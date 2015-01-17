@@ -9,7 +9,7 @@
 (add-to-list 'package-archives
              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://stable.melpa.org/packages/") t)
 
 ;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 ;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -84,6 +84,7 @@
     (package-install p)))
 
 
+
 ;; Place downloaded elisp files in ~/.emacs.d/vendor. You'll then be able
 ;; to load them.
 ;;
@@ -140,3 +141,71 @@
 
 ;; delete selection
 (delete-selection-mode 1)
+
+;; CUA mode allows to use C-x, C-c, C-v, C-z... for copy, cut, paste, undo...
+;; and also  
+(cua-mode t)
+
+
+;; key bindings
+;; sa: http://www.emacswiki.org/emacs/EmacsForMacOS
+(when (eq system-type 'darwin) ;; mac specific settings
+  (setq mac-option-modifier 'meta)       ;; left option key is META
+  (setq mac-right-option-modifier nil)   ;; right option key is for OS X (key combinations)
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  )
+
+;; Move deleted files to trash
+(setq delete-by-moving-to-trash t)
+
+  
+;; Don't show ^M when file has mixed line endings
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
+(add-hook 'text-mode-hook 'remove-dos-eol)  
+
+
+;; Tab/Space Settings
+(setq-default tab-width 2)
+;; Permanently force Emacs to indent with spaces, never with TABs:
+(setq-default indent-tabs-mode nil)
+
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(setq transient-mark-mode t) ;; turns on visual feedback on selections.
+(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+(setq x-select-enable-clipboard t)
+(if (>= emacs-major-version 24)
+  (setq interprogram-paste-function 'x-selection-value)
+  (setq interprogram-paste-function 'x-cut-buffer-or-selection-value) )   
+
+
+
+;; Commands for uppercase/downcase
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+
+
+
+
+;; Match parentheses.  Useful to be sure you've closed everything up.
+(show-paren-mode t)
+
+
+;; C++ mode adjustment
+(add-hook 'c++-mode-hook
+  '(lambda ()
+     (c-set-style "stroustrup")
+     (setq indent-tabs-mode nil)))
+
+
+
+
+;; Set context menu of artist-mode (painting ASCII art) to right click instead of middle click
+(eval-after-load "artist"
+  '(define-key artist-mode-map [(down-mouse-3)] 'artist-mouse-choose-operation)
+)
