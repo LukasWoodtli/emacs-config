@@ -1,0 +1,12 @@
+On Windows 7 the Emacs init file needs to be on this path:
+C:\Users\luki\AppData\Roaming\.emacs.el
+On Windows XP it's possibly in:
+C:\Programme\emacs\bin\_emacs.el
+On Ubuntu it's:
+~/.emacs.el (softlink needed)
+
+List hardlinks of a file on Win 7:
+fsutil hardlink list <Filename>
+
+Create softlink on Linux:
+ln -s {src} {dest}
