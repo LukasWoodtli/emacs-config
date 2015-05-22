@@ -66,7 +66,11 @@
     tagedit
 
     ;; git integration
-    magit))
+    magit
+
+    ;; Markdown
+    markdown-mode))
+
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -98,6 +102,9 @@
 ;; a .yml file
 (add-to-list 'load-path "~/.emacs.d/vendor")
 
+;; File association
+;; setup files ending in “.js” to open in js2-mode
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;;;
 ;; Customization
@@ -138,9 +145,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(coffee-tab-width 2))
-
-;; delete selection
-(delete-selection-mode 1)
 
 ;; CUA mode allows to use C-x, C-c, C-v, C-z... for copy, cut, paste, undo...
 ;; and also  
@@ -209,3 +213,9 @@
 (eval-after-load "artist"
   '(define-key artist-mode-map [(down-mouse-3)] 'artist-mouse-choose-operation)
 )
+
+;; Transient selection
+(transient-mark-mode 1)
+
+;; delete selection
+(delete-selection-mode)
