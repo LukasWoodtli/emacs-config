@@ -159,6 +159,12 @@
   (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
   )
 
+
+;; list directories (ls) for mac
+(if (eq system-type 'darwin)
+    (setq insert-directory-program (executable-find "gls")))
+
+
 ;; Move deleted files to trash
 (setq delete-by-moving-to-trash t)
 
