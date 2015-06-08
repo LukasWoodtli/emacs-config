@@ -69,7 +69,11 @@
     magit
 
     ;; Markdown
-    markdown-mode))
+    markdown-mode
+
+    ;; Spell checking
+    flyspell
+    ))
 
 
 ;; On OS X, an Emacs instance started from the graphical user
