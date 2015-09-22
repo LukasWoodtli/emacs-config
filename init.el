@@ -9,7 +9,11 @@
 (add-to-list 'package-archives
              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-             '("melpa" . "http://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 ;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -73,6 +77,9 @@
 
     ;; Spell checking
     flyspell
+    
+    ;; Oberon major mode
+    oberon
     ))
 
 
@@ -229,3 +236,10 @@
 
 ;; delete selection
 (delete-selection-mode)
+
+
+;; Oberon mode
+(add-to-list 'auto-mode-alist '("\\.Mod\\'" . oberon-mode))
+(add-to-list 'auto-mode-alist '("\\.Mos\\'" . oberon-mode))
+(autoload 'oberon-mode "oberon" nil t)
+(add-hook 'oberon-mode-hook (lambda () (abbrev-mode t)))
