@@ -78,8 +78,6 @@
     ;; Spell checking
     flyspell
     
-    ;; Oberon major mode
-    oberon
     ))
 
 
