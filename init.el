@@ -235,9 +235,3 @@
 ;; delete selection
 (delete-selection-mode)
 
-
-;; Oberon mode
-(add-to-list 'auto-mode-alist '("\\.Mod\\'" . oberon-mode))
-(add-to-list 'auto-mode-alist '("\\.Mos\\'" . oberon-mode))
-(autoload 'oberon-mode "oberon" nil t)
-(add-hook 'oberon-mode-hook (lambda () (abbrev-mode t)))
