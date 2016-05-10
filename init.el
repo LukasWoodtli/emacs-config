@@ -235,3 +235,7 @@
 ;; delete selection
 (delete-selection-mode)
 
+;; Show column of cursor (point)
+(setq column-number-mode t)
+
+
