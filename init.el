@@ -77,6 +77,9 @@
 
     ;; Spell checking
     flyspell
+
+    ;; click on URLs
+    browse-url
     
     ))
 
@@ -238,4 +241,5 @@
 ;; Show column of cursor (point)
 (setq column-number-mode t)
 
-
+;; Browse to URL by shift-click
+(global-set-key [S-mouse-1] 'browse-url-at-mouse)
