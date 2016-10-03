@@ -5,7 +5,7 @@
 ;; Define package repositories
 (require 'package)
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+             '("marmalade" . "https://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
@@ -13,7 +13,7 @@
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 
 ;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 ;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -29,13 +29,19 @@
 ;; This informs Emacs about the latest versions of all packages, and
 ;; makes them available for download.
 (when (not package-archive-contents)
-  (package-refresh-contents))
+  (package-refresh-contents))  ;; if packages can't be loaded this has to be done manually
 
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install
 ;; Add in your own as you wish:
 (defvar my-packages
-  '(;; makes handling lisp expressions much, much easier
+  '(    
+    ;; allow ido usage in as many contexts as possible. see
+    ;; customizations/better-defaults.el line 47 for a description
+    ;; of ido
+    ;ido-ubiquitous
+
+    ;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
@@ -49,11 +55,6 @@
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     ;;cider
-
-    ;; allow ido usage in as many contexts as possible. see
-    ;; customizations/better-defaults.el line 47 for a description
-    ;; of ido
-    ido-ubiquitous
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -80,7 +81,12 @@
 
     ;; click on URLs
     browse-url
+
+    ;; undo tree needed by ergo emacs
+    undo-tree
     
+    ;; ergo emacs
+    ergoemacs-mode
     ))
 
 
@@ -112,7 +118,7 @@
 ;; 
 ;; Adding this code will make Emacs enter yaml mode whenever you open
 ;; a .yml file
-(add-to-list 'load-path "~/.emacs.d/vendor")
+;(add-to-list 'load-path "~/.emacs.d/vendor")
 
 ;; File association
 ;; setup files ending in “.js” to open in js2-mode
@@ -132,7 +138,7 @@
 
 ;; These customizations make it easier for you to navigate files,
 ;; switch buffers, and choose options from the minibuffer.
-(load "navigation.el")
+;(load "navigation.el")
 
 ;; These customizations change the way emacs looks and disable/enable
 ;; some user interface elements
@@ -148,15 +154,18 @@
 (load "elisp-editing.el")
 
 ;; Langauage-specific
-(load "setup-clojure.el")
-(load "setup-js.el")
+;(load "setup-clojure.el")
+;(load "setup-js.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(coffee-tab-width 2))
+ '(coffee-tab-width 2)
+ '(package-selected-packages
+   (quote
+    (ergoemacs-mode undo-tree tagedit smex rainbow-delimiters projectile paredit magit ido-ubiquitous exec-path-from-shell clojure-mode-extra-font-locking cider-profile cider-decompile ac-cider))))
 
 ;; CUA mode allows to use C-x, C-c, C-v, C-z... for copy, cut, paste, undo...
 ;; and also  
@@ -243,3 +252,9 @@
 
 ;; Browse to URL by shift-click
 (global-set-key [S-mouse-1] 'browse-url-at-mouse)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
