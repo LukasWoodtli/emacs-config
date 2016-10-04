@@ -93,7 +93,6 @@
 
     ;; undo tree needed by ergo emacs
     undo-tree
-
     ))
 
 
