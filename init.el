@@ -74,19 +74,26 @@
     magit
 
     ;; Markdown
-    markdown-mode
+    ;;markdown-mode
 
     ;; Spell checking
     flyspell
 
     ;; click on URLs
     browse-url
+    
+    ;; hex editor
+    hexl
+
+    ;; hexview
+    ;hexview
+
+    ;; ergonomic emacs
+    ;ergoemacs-mode
 
     ;; undo tree needed by ergo emacs
     undo-tree
-    
-    ;; ergo emacs
-    ergoemacs-mode
+
     ))
 
 
