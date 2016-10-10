@@ -10,6 +10,8 @@
              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -39,7 +41,7 @@
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/better-defaults.el line 47 for a description
     ;; of ido
-    ;ido-ubiquitous
+    ido-ubiquitous
 
     ;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
@@ -93,6 +95,7 @@
 
     ;; undo tree needed by ergo emacs
     undo-tree
+
     ))
 
 

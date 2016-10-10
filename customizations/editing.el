@@ -52,7 +52,10 @@
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
 ;; yay rainbows!
-(global-rainbow-delimiters-mode t)
+;;Enabling use Emacs-wide has had problems with conflicting with other major modes, and so the global-rainbow-delimiters-mode has been removed. 
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+
 
 ;; use 2 spaces for tabs
 (defun die-tabs ()
